@@ -151,7 +151,7 @@ if __name__ == "__main__":
     # Create users
 
     for i in range(config["number_of_users"]):
-        username = f"urNui{i + 1}"
+        username = f"User{i + 1}"
         user_id = create_user(username)
         if user_id:
             # Create posts for each user
