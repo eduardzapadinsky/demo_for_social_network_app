@@ -1,4 +1,3 @@
-```markdown
 # Social Network Automation Script
 
 This Python script is designed to automate interactions with a social networking application using its API. The script
