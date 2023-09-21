@@ -1,3 +1,9 @@
+"""
+This Python script is designed to automate interactions with a social networking application using its API.
+The script creates users, generates random posts, and likes random posts for those users.
+It is intended for testing and demonstration purposes only.
+"""
+
 import requests
 import random
 import string
@@ -24,12 +30,28 @@ except FileNotFoundError:
 
 # Function to generate a random string for post content
 def random_string(length):
+    """
+    Generate a random string for post content.
+    Args:
+        length (int): The length of the random string.
+    Returns:
+        str: A random string of the specified length.
+    """
+
     letters = string.ascii_letters
     return ''.join(random.choice(letters) for _ in range(length))
 
 
 # Function to create a new user
 def create_user(user_name):
+    """
+    Create a new user using the API.
+    Args:
+        user_name (str): The username for the new user.
+    Returns:
+        int or None: The user ID if user creation is successful, or None if it fails.
+    """
+
     response = requests.post(
         f"{API_URL}signup/",
         data={"username": user_name, "password": "password"},
@@ -44,6 +66,14 @@ def create_user(user_name):
 
 # Function to get an authentication token for a user
 def get_token(user_name):
+    """
+    Get an authentication token for a user.
+    Args:
+        user_name (str): The username of the user.
+    Returns:
+        str or None: The authentication token if successful, or None if it fails.
+    """
+
     response = requests.post(
         f"{API_URL}auth/",
         data={"username": f"{user_name}", "password": "password"},
@@ -56,6 +86,13 @@ def get_token(user_name):
 
 # Function to create random posts for a user
 def create_posts(user_name, max_posts):
+    """
+    Create random posts for a user.
+    Args:
+        user_name (str): The username of the user creating posts.
+        max_posts (int): The maximum number of posts the user can create.
+    """
+
     global posts_number
 
     num_posts = random.randint(1, max_posts)
@@ -82,6 +119,13 @@ def create_posts(user_name, max_posts):
 
 # Function to like random posts
 def like_posts(user_name, max_likes):
+    """
+    Like random posts for a user.
+    Args:
+        user_name (str): The username of the user liking posts.
+        max_likes (int): The maximum number of likes the user can give.
+    """
+
     unique_post_ids = list(range(1, posts_number + 1))
     random.shuffle(unique_post_ids)
 
